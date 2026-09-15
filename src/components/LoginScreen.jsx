@@ -1,10 +1,10 @@
-import { auth, provider } from '../firebase'
-import { signInWithPopup } from 'firebase/auth'
+import { auth } from '../firebase'
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 export default function LoginScreen() {
   const handleLogin = async () => {
     try {
-      await signInWithPopup(auth, provider)
+      await signInWithPopup(auth, new GoogleAuthProvider().setCustomParameters({ prompt: 'select_account' }))
     } catch (err) {
       console.error('Login failed:', err)
     }
