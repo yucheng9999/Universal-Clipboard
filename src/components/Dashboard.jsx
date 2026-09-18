@@ -2,6 +2,15 @@ import { useState } from 'react'
 import { useRealtimeClipboard, uploadClipboard, clearClipboard } from '../hooks/useClipboard'
 import LogoutButton from './LogoutButton'
 
+const isUrl = (text) => {
+  try {
+    const url = new URL(text);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+};
+
 export default function Dashboard({ user }) {
   const { clipboard, loading } = useRealtimeClipboard(user.uid)
   const [status, setStatus] = useState('')
