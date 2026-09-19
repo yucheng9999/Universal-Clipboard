@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { signOut } from 'firebase/auth'
+import { auth } from '../firebase'
 import { useRealtimeClipboard, uploadClipboard, clearClipboard } from '../hooks/useClipboard'
 import LogoutButton from './LogoutButton'
 
@@ -58,7 +60,13 @@ export default function Dashboard({ user }) {
     <div className="dashboard">
       <header className="dashboard-header">
         <span className="user-name">{user.displayName}</span>
-        <LogoutButton />
+        <div className="header-buttons">
+          <button className="switch-user-btn" onClick={() => {
+            sessionStorage.setItem('switchUser', '1')
+            signOut(auth)
+          }}>Switch User</button>
+          <LogoutButton />
+        </div>
       </header>
 
       <main className="dashboard-main">

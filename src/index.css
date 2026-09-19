@@ -122,6 +122,28 @@ body {
   color: #fff;
 }
 
+.header-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.switch-user-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.switch-user-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
 .dashboard-main {
   flex: 1;
   display: flex;

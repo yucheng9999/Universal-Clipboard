@@ -1,21 +1,23 @@
+import { useEffect } from 'react'
 import { auth } from '../firebase'
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 export default function LoginScreen() {
-  const handleLogin = async () => {
-    try {
-      await signInWithPopup(auth, new GoogleAuthProvider().setCustomParameters({ prompt: 'select_account' }))
-    } catch (err) {
-      console.error('Login failed:', err)
+  const signIn = (prompt) => signInWithPopup(auth, new GoogleAuthProvider().setCustomParameters({ prompt }))
+
+  useEffect(() => {
+    if (sessionStorage.getItem('switchUser')) {
+      sessionStorage.removeItem('switchUser')
+      signIn('select_account').catch(console.error)
     }
-  }
+  }, [])
 
   return (
     <div className="login-screen">
       <div className="login-card">
         <h1>Universal Clipboard</h1>
         <p>Sign in to sync your clipboard across devices</p>
-        <button className="google-btn" onClick={handleLogin}>
+        <button className="google-btn" onClick={() => signIn('login')}>
           <svg viewBox="0 0 24 24" width="20" height="20">
             <path
               d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
