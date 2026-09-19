@@ -248,23 +248,6 @@ body {
   text-decoration: underline;
 }
 
-.link-copy-btn {
-  flex-shrink: 0;
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  transition: color 0.15s;
-}
-
-.link-copy-btn:hover {
-  color: var(--text);
-}
-
 /* Responsive */
 @media (max-width: 600px) {
   .buttons-row {
